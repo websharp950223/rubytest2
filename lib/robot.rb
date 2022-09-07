@@ -1,8 +1,11 @@
 class Robot
   attr_accessor :max_x, :max_y, :pos_x, :pos_y, :direction
 
-  def initialize(max_cord, orig_pos, move)
+  def initialize(max_cord)
     @max_x, @max_y = max_cord.split
+  end
+
+  def move(orig_pos, move)
     @pos_x, @pos_y, @direction = orig_pos.split
     @pos_x = @pos_x.to_i
     @pos_y = @pos_y.to_i
@@ -11,6 +14,7 @@ class Robot
     move_robot(steps)
   end
 
+  private
   def move_robot(steps)
     arrows = ['N', 'E', 'S', 'W']
     steps.each do |step|
@@ -35,7 +39,7 @@ class Robot
         @pos_y += y_step
       end
     end
-    p "#{@pos_x} #{pos_y} #{@direction}"
+    "#{@pos_x} #{pos_y} #{@direction}"
   end
 
   def axis_steps
@@ -52,7 +56,3 @@ class Robot
   end
 
 end
-
-robot = Robot.new("5 5", "1 2 N", "LMLMLMLMM")
-
-robot = Robot.new("5 5", "3 3 E", "MMRMMRMRRM")
